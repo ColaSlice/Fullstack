@@ -1,0 +1,36 @@
+﻿@page "/"
+@using Fullstack.Data.Models
+@inject HttpClient Client
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+@if (_blogPosts is not null)
+{
+    foreach (BlogPost blogPost in _blogPosts)
+    {
+        <div>
+            <h2>@blogPost.Title</h2>
+            <hr/>
+            <p>@blogPost.Content</p>
+        </div>
+    }
+}
+
+@code
+{
+    List<BlogPost>? _blogPosts;
+    
+    protected override async Task OnInitializedAsync()
+    {
+        HttpResponseMessage response = await Client.GetAsync("http://localhost:5179/api/Blog");
+
+        if (response.IsSuccessStatusCode)
+        {
+            _blogPosts = await response.Content.ReadAsAsync<List<BlogPost>?>();
+        }
+    }
+}
