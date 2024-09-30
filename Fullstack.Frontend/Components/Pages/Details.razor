@@ -1,66 +1,59 @@
-﻿@page "/details"
+﻿@page "/details/{Id:int?}"
+@using Fullstack.Data.Models
+@inject HttpClient Client
 
 <PageTitle>details</PageTitle>
 
-<h1>Weather</h1>
-
-<p>This component demonstrates showing data.</p>
-
-@if (forecasts == null)
+@if (_blogPosts is not null)
 {
-    <p>
-        <em>Loading...</em>
-    </p>
+    <div class="d-flex flex-column align-items-center text-light">
+        <div class="text-start card card-block post-card my-4 corner-rounding post-details">
+            <h2 class="m-lg-3 mt-2">@_blogPosts.Title</h2>
+            <h6 class="m-lg-3 mt-2">Created: @_blogPosts.Created</h6>
+            @if (_blogPosts.Edited)
+            {
+                <h6 class="m-lg-3">Edited: @_blogPosts.EditedTime</h6>
+            }
+            <hr class="bg-light"/>
+            <p class="m-lg-3" style="white-space: pre-wrap;">@_blogPosts.Content</p>
+
+            <div>
+                <button @onclick="() => DeletePost(_blogPosts.Id)" class="button corner-rounding">Delete</button>
+                <a href="edit/@_blogPosts.Id" class="button">Edit</a>
+            </div>
+        </div>
+    </div>
 }
-else
+
+@if (Deleted)
 {
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Date</th>
-            <th>Temp. (C)</th>
-            <th>Temp. (F)</th>
-            <th>Summary</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach (var forecast in forecasts)
-        {
-            <tr>
-                <td>@forecast.Date.ToShortDateString()</td>
-                <td>@forecast.TemperatureC</td>
-                <td>@forecast.TemperatureF</td>
-                <td>@forecast.Summary</td>
-            </tr>
-        }
-        </tbody>
-    </table>
+    <h1>Deleted</h1>
 }
 
 @code {
-    private WeatherForecast[]? forecasts;
-
+    [Parameter]
+    public int? Id { get; set; }
+    private bool Deleted { get; set; }
+    
+    BlogPost? _blogPosts;
+    
     protected override async Task OnInitializedAsync()
     {
-        // Simulate asynchronous loading to demonstrate a loading indicator
-        await Task.Delay(500);
+        HttpResponseMessage response = await Client.GetAsync($"http://localhost:5179/api/Blog/{Id}");
 
-        var startDate = DateOnly.FromDateTime(DateTime.Now);
-        var summaries = new[] { "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching" };
-        forecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        if (response.IsSuccessStatusCode)
         {
-            Date = startDate.AddDays(index),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = summaries[Random.Shared.Next(summaries.Length)]
-        }).ToArray();
+            _blogPosts = await response.Content.ReadAsAsync<BlogPost?>();
+        }
     }
 
-    private class WeatherForecast
+    private async Task DeletePost(int id)
     {
-        public DateOnly Date { get; set; }
-        public int TemperatureC { get; set; }
-        public string? Summary { get; set; }
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-    }
+        HttpResponseMessage response = await Client.DeleteAsync($"http://localhost:5179/api/Blog/{id}");
 
+        if (response.IsSuccessStatusCode)
+        {
+            Deleted = true;
+        }
+    }
 }

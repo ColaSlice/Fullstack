@@ -1,11 +1,12 @@
 ﻿@page "/"
+@page "/{Success:bool}"
 @using Fullstack.Data.Models
 @inject HttpClient Client
 
 <PageTitle>Home</PageTitle>
 
 <div class="d-flex flex-column align-items-center pt-3">
-    <h1 class="text-center text-light bg-dark mt-3" style="width: 30%;">All Blog Posts</h1>
+    <h1 class="text-center text-light mt-3" style="width: 30%;">All Blog Posts</h1>
 </div>
 
 
@@ -14,18 +15,30 @@
     <div class="d-flex flex-column align-items-center">
         @foreach (BlogPost blogPost in _blogPosts)
         {
-            <a href="details/@blogPost.Id" class="text-start card card-block bg-dark my-4" style="width: 30%; text-decoration: none;">
-                <h2 class="text-light m-lg-3 my-2">@blogPost.Title</h2>
-                <hr class="bg-light"/>
-                <p class="text-light m-lg-3">@blogPost.Content</p>
-            </a>
-            <br/>
+            <div class="text-start card card-block post-card my-4 corner-rounding">
+                <a href="details/@blogPost.Id">
+                    <h2 class="text-light m-lg-3 my-2">@blogPost.Title</h2>
+                    <hr class="bg-light"/>
+                    <p class="text-light m-lg-3">@blogPost.Content</p>
+                </a>
+                <br/>
+            </div>
         }
     </div>
 }
+else
+{
+    <div class="d-flex flex-column align-items-center pt-3">
+        <h1 class="text-center text-light bg-dark mt-3" style="width: 30%;">Loading...</h1>
+    </div>
+}
+
+
 
 @code
 {
+    [Parameter]
+    public bool? Success { get; set; }
     List<BlogPost>? _blogPosts;
     
     protected override async Task OnInitializedAsync()

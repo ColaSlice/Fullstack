@@ -9,10 +9,12 @@ public class BlogPost
     [MaxLength(256)]
     public string Title { get; set; } = "";
     
-    [MaxLength(256)]
+    [MaxLength(4096)]
     public string Content { get; set; } = "";
     
     public DateTime Created { get; set; }
     
-    public DateTime Edited { get; set; }
+    public DateTime EditedTime { get; set; }
+
+    public bool Edited { get; set; }
 }

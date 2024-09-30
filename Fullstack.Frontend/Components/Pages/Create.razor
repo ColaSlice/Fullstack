@@ -1,0 +1,49 @@
+@page "/create"
+@using Fullstack.Data.Models
+@inject HttpClient Client
+
+<br/>
+<div class="bg-dark edit-box-outer p-4 corner-rounding text-light">
+    <EditForm Model="BlogPost" OnSubmit="Submit">
+        <div class="edit-box-inner">
+            <InputText @bind-Value="BlogPost!.Title" placeholder="Title" class="my-4 corner-rounding editor">Title</InputText>
+            <InputTextArea @bind-Value="BlogPost!.Content" placeholder="Content" rows="16" class="my-4 corner-rounding editor">Content</InputTextArea>
+            <button class="button corner-rounding">Post</button>
+        </div>
+    </EditForm>
+</div>
+
+@if (Send)
+{
+<div class="pop-up">
+    <div class="card card-block post-card my-4 corner-rounding pt-5">
+        <h1 class="mx-3 text-light">Post has been posted.</h1>
+
+        <a class="mx-3 text-light button mb-3" href="/true">Go back</a>
+    </div>
+</div>
+}
+
+@code {
+    private BlogPost? BlogPost { get; set; }
+    private bool Send { get; set; }
+    
+    protected override void OnInitialized()
+    {
+        BlogPost = new();
+    }
+
+    private async Task Submit()
+    {
+        if (!string.IsNullOrWhiteSpace(BlogPost!.Title) && !string.IsNullOrWhiteSpace(BlogPost!.Content))
+        {
+            BlogPost!.Created = DateTime.Now;
+            HttpResponseMessage? response = await Client.PostAsJsonAsync("http://localhost:5179/api/Blog", BlogPost);
+
+            if (response.IsSuccessStatusCode)
+            {
+                Send = true;
+            }
+        }
+    }
+}

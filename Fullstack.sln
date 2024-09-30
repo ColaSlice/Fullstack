@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fullstack.Backend", "Fullstack.Backend\Fullstack.Backend.csproj", "{677B1594-F9BE-4A85-BB3C-7564623EED35}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fullstack.Frontend", "Fullstack.Frontend\Fullstack.Frontend.csproj", "{3225CD27-32A8-4733-A75C-C98A7D2A949E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fullstack.Data", "Fullstack.Data\Fullstack.Data.csproj", "{D30C5988-42F7-4194-B015-B1F9FF3548C0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{677B1594-F9BE-4A85-BB3C-7564623EED35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{677B1594-F9BE-4A85-BB3C-7564623EED35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{677B1594-F9BE-4A85-BB3C-7564623EED35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{677B1594-F9BE-4A85-BB3C-7564623EED35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3225CD27-32A8-4733-A75C-C98A7D2A949E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3225CD27-32A8-4733-A75C-C98A7D2A949E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3225CD27-32A8-4733-A75C-C98A7D2A949E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3225CD27-32A8-4733-A75C-C98A7D2A949E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D30C5988-42F7-4194-B015-B1F9FF3548C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D30C5988-42F7-4194-B015-B1F9FF3548C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D30C5988-42F7-4194-B015-B1F9FF3548C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D30C5988-42F7-4194-B015-B1F9FF3548C0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

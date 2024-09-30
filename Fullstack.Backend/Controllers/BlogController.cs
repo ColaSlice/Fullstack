@@ -39,7 +39,6 @@ namespace Fullstack.Backend.Controllers
         }
 
         // PUT: api/Blog/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutBlogPost(int id, BlogPost blogPost)
         {
@@ -54,27 +53,25 @@ namespace Fullstack.Backend.Controllers
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException e)
             {
                 if (!BlogPostExists(id))
                 {
                     return NotFound();
                 }
-                else
-                {
-                    throw;
-                }
+
+                Console.WriteLine(e);
+                throw;
             }
 
-            return NoContent();
+            return Ok();
         }
 
         // POST: api/Blog
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<BlogPost>> PostBlogPost(BlogPost blogPost)
         {
-            _context.BlogPosts.Add(blogPost);
+            await _context.BlogPosts.AddAsync(blogPost);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetBlogPost", new { id = blogPost.Id }, blogPost);
