@@ -6,7 +6,7 @@ First, either git clone, or press download in the top right green button called 
 
 ### Windows
 
-Open the project or Fullstack.sln with Visual Studio. Right click the Solution node and click `Properties` (Like this)[https://learn.microsoft.com/en-us/visualstudio/ide/how-to-set-multiple-startup-projects?view=vs-2022#to-set-multiple-startup-projects], then select the backend and frontend project.
+Open the project or Fullstack.sln with Visual Studio. Right click the Solution node and click `Properties` Like this (https://learn.microsoft.com/en-us/visualstudio/ide/how-to-set-multiple-startup-projects?view=vs-2022#to-set-multiple-startup-projects), then select the backend and frontend project.
 
 When that's done, you can then just press `start`, and it should just work.
 
