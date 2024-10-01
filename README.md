@@ -40,6 +40,6 @@ I also decided to create a library project to hold the models, migrations and ap
 
 15 minutes to set up `BlogController.cs` and `Program.cs`.
 
-5 hours and 30 minutes to set up the frontend.
+5 hours and 30 minutes to set up the frontend. (It's been some time since I build a frontend from the ground up.)
 
 45 minutes to bug fix and clean up.
