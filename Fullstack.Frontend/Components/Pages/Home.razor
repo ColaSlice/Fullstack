@@ -1,12 +1,11 @@
 ﻿@page "/"
-@page "/{Success:bool}"
 @using Fullstack.Data.Models
 @inject HttpClient Client
 
 <PageTitle>Home</PageTitle>
 
 <div class="d-flex flex-column align-items-center pt-3">
-    <h1 class="text-center text-light mt-3" style="width: 30%;">All Blog Posts</h1>
+    <h1 class="text-center mt-3" style="width: 30%;">All Blog Posts</h1>
 </div>
 
 
@@ -16,10 +15,10 @@
         @foreach (BlogPost blogPost in _blogPosts)
         {
             <div class="text-start card card-block post-card my-4 corner-rounding">
-                <a href="details/@blogPost.Id">
-                    <h2 class="text-light m-lg-3 my-2">@blogPost.Title</h2>
+                <a href="details/@blogPost.Id" class="text-light">
+                    <h2 class="m-lg-3 my-2">@blogPost.Title</h2>
                     <hr class="bg-light"/>
-                    <p class="text-light m-lg-3">@blogPost.Content</p>
+                    <p class="m-lg-3">@blogPost.Content</p>
                 </a>
                 <br/>
             </div>
@@ -28,26 +27,33 @@
 }
 else
 {
-    <div class="d-flex flex-column align-items-center pt-3">
-        <h1 class="text-center text-light bg-dark mt-3" style="width: 30%;">Loading...</h1>
+<div class="pop-up">
+    <div class="card card-block post-card my-4 corner-rounding pt-5">
+        <h1>Loading...</h1>
+        <h1>If the blog posts doesn't show up, try refreshing the site :)</h1>
     </div>
+</div>
 }
-
-
 
 @code
 {
-    [Parameter]
-    public bool? Success { get; set; }
     List<BlogPost>? _blogPosts;
+    HttpResponseMessage? _response;
     
     protected override async Task OnInitializedAsync()
     {
-        HttpResponseMessage response = await Client.GetAsync("http://localhost:5179/api/Blog");
-
-        if (response.IsSuccessStatusCode)
+        try
         {
-            _blogPosts = await response.Content.ReadAsAsync<List<BlogPost>?>();
+            _response = await Client.GetAsync("http://localhost:5179/api/Blog");
+            
+            if (_response.IsSuccessStatusCode)
+            {
+                _blogPosts = await _response.Content.ReadAsAsync<List<BlogPost>?>();
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
         }
     }
 }

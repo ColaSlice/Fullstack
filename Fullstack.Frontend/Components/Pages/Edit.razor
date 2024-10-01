@@ -11,7 +11,7 @@
 else
 {
     <br/>
-    <div class="bg-dark edit-box-outer px-4 corner-rounding text-light">
+    <div class="bg-dark edit-box-outer px-4 corner-rounding">
         <EditForm Model="BlogPost" OnSubmit="Submit">
             <div class="edit-box-inner">
                 <InputText @bind-Value="BlogPost!.Title" placeholder="Title" class="my-4 corner-rounding editor">Title</InputText>
@@ -24,16 +24,20 @@ else
 
 @if (Sending)
 {
-    <h1 class="text-light">Sending</h1>
+    <div class="pop-up">
+        <div class="card card-block post-card my-4 corner-rounding pt-5">
+            <h1>Sending</h1>
+        </div>
+    </div>
 }
 
 @if (Edited)
 {
     <div class="pop-up">
         <div class="card card-block post-card my-4 corner-rounding pt-5">
-            <h1 class="mx-3 text-light">Post has been edited.</h1>
+            <h1 class="mx-3 ">Post has been edited.</h1>
 
-            <a class="mx-3 text-light button mb-3" href="/true">Go back</a>
+            <a class="mx-3 button mb-3" href="/">Go back</a>
         </div>
     </div>
 }

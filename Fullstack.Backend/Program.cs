@@ -1,5 +1,4 @@
 using Fullstack.Data;
-using Fullstack.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);

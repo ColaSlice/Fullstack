@@ -6,7 +6,7 @@
 
 @if (_blogPosts is not null)
 {
-    <div class="d-flex flex-column align-items-center text-light">
+    <div class="d-flex flex-column align-items-center">
         <div class="text-start card card-block post-card my-4 corner-rounding post-details">
             <h2 class="m-lg-3 mt-2">@_blogPosts.Title</h2>
             <h6 class="m-lg-3 mt-2">Created: @_blogPosts.Created</h6>
@@ -27,7 +27,13 @@
 
 @if (Deleted)
 {
-    <h1>Deleted</h1>
+<div class="pop-up">
+    <div class="card card-block post-card my-4 corner-rounding pt-5">
+        <h1>Deleted</h1>
+
+        <a class="mx-3 button mb-3" href="/">Go back</a>
+    </div>
+</div>
 }
 
 @code {

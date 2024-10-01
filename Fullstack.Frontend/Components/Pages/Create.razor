@@ -3,7 +3,7 @@
 @inject HttpClient Client
 
 <br/>
-<div class="bg-dark edit-box-outer p-4 corner-rounding text-light">
+<div class="bg-dark edit-box-outer p-4 corner-rounding">
     <EditForm Model="BlogPost" OnSubmit="Submit">
         <div class="edit-box-inner">
             <InputText @bind-Value="BlogPost!.Title" placeholder="Title" class="my-4 corner-rounding editor">Title</InputText>
@@ -17,9 +17,9 @@
 {
 <div class="pop-up">
     <div class="card card-block post-card my-4 corner-rounding pt-5">
-        <h1 class="mx-3 text-light">Post has been posted.</h1>
+        <h1 class="mx-3 ">Post has been posted.</h1>
 
-        <a class="mx-3 text-light button mb-3" href="/true">Go back</a>
+        <a class="mx-3 button mb-3" href="/">Go back</a>
     </div>
 </div>
 }
@@ -38,6 +38,7 @@
         if (!string.IsNullOrWhiteSpace(BlogPost!.Title) && !string.IsNullOrWhiteSpace(BlogPost!.Content))
         {
             BlogPost!.Created = DateTime.Now;
+            
             HttpResponseMessage? response = await Client.PostAsJsonAsync("http://localhost:5179/api/Blog", BlogPost);
 
             if (response.IsSuccessStatusCode)

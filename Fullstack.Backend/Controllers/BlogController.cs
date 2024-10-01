@@ -14,7 +14,6 @@ namespace Fullstack.Backend.Controllers
         public BlogController(ApplicationDbContext context)
         {
             _context = context;
-            _context.Database.EnsureCreated();
         }
 
         // GET: api/Blog
