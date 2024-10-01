@@ -1,9 +1,14 @@
 # Job-application
 
 ## How To Run The Project
+
+First, either git clone, or press download in the top right green button called `<Code>` on this repo.
+
 ### Windows
 
-Open the project or Fullstack.sln with Visual Studio. Navigate to the "run" dropdown botton, choose Fullstack.Backend and run that. When that's running (just wait 30-60 seconds on first run), choose Fullstack.Frontend to run the website.
+Open the project or Fullstack.sln with Visual Studio. Right click the Solution node and click `Properties` (Like this)[https://learn.microsoft.com/en-us/visualstudio/ide/how-to-set-multiple-startup-projects?view=vs-2022#to-set-multiple-startup-projects], then select the backend and frontend project.
+
+When that's done, you can then just press `start`, and it should just work.
 
 If the website doesn't open automatically, go to your browser URL bar and copy/paste `http://localhost:5262/`
 
