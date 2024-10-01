@@ -18,7 +18,7 @@ cd to the project directory (where the Fullstack.sln resides) and run `dotnet ru
 
 ### MacOS
 
-I don't havea mac, but it should work the same as with the Linux way.
+I don't have a mac, but it should work the same as with the Linux way.
 
 ## Summary
 
