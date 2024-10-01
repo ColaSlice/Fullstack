@@ -2,11 +2,11 @@
 
 ## How To Run The Project
 
-First, either git clone, or press download in the top right green button called `<Code>` on this repo.
+First, either git clone, or press download in the top right green button called `<> Code` on this repo.
 
 ### Windows
 
-Open the project or Fullstack.sln with Visual Studio. Right click the Solution node and click `Properties` Like this (https://learn.microsoft.com/en-us/visualstudio/ide/how-to-set-multiple-startup-projects?view=vs-2022#to-set-multiple-startup-projects), then select the backend and frontend project.
+Open the project or Fullstack.sln with Visual Studio or Jetbrains Rider. Right click the Solution node and click `Properties` Like this (https://learn.microsoft.com/en-us/visualstudio/ide/how-to-set-multiple-startup-projects?view=vs-2022#to-set-multiple-startup-projects), then select the backend and frontend project.
 
 When that's done, you can then just press `start`, and it should just work.
 
@@ -29,6 +29,8 @@ The first hiccup was that the database wouldn't get generated when using Entity 
 The second hiccup was the frontend css. I changed and changed the css many times, but it wouldn't get updated on the browser. The solution? press Crtl + F5, so the cached css file will be refreshed.
 
 The boilerplate templates for Blazor is very nice, but it does take a little bit to change to how I liked it. I had to basically remove all template HTML, which is fine and dandy.
+
+I also decided to create a library project to hold the models, migrations and application context classes, since that makes it easier for everyone to work with, and lowers the amount of redundant classes.
 
 ## Time Tracking
 
